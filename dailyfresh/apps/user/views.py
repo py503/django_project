@@ -9,6 +9,7 @@ from django.contrib.auth import authenticate, login
 from django.views.generic import View
 from itsdangerous import TimedJSONWebSignatureSerializer as Serializer, SignatureExpired
 from user.models import User
+from utils.mixin import LoginRequiredMixin
 
 
 # /user/register
@@ -223,7 +224,7 @@ class LoginView(View):
 
 
 # /user
-class UserInfoView(View):
+class UserInfoView(LoginRequiredMixin, View):
     '''用户中心-信息页'''
 
     def get(self, request):
@@ -233,7 +234,7 @@ class UserInfoView(View):
 
 
 # /user/order
-class UserOrderView(View):
+class UserOrderView(LoginRequiredMixin, View):
     '''用户中心-订单首页'''
 
     def get(self, request):
@@ -243,7 +244,7 @@ class UserOrderView(View):
 
 
 # /user/address
-class AddressView(View):
+class AddressView(LoginRequiredMixin, View):
     '''用户中心-地址页'''
 
     def get(self, request):
