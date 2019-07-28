@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>学生分页</title>
+</head>
+<body>
+<ul>
+    {% for student in students %}
+        <li>
+            {{ student.s_name }} - {{ student.s_grade.g_name }}
+        </li>
+    {% endfor %}
+
+</ul>
+
+<ul>
+    {% if students.has_previous %}
+        <a href="/three/studentpage/{{ students.previous_page_number }}">&lt;上一页</a>
+    {% endif %}
+    {% for index in students.paginator.page_range %}
+        {% if index == students.number %}
+            {{ index }}
+
+        {% else %}
+
+            <a href="/three/studentpage/{{ index }}"> {{ index }}</a>
+
+        {% endif %}
+    {% endfor %}
+
+    {% if students.has_next%}
+        <a href="/three/studentpage/{{ students.next_page_number }}">&lt;下一页</a>
+    {% endif %}
+</ul>
+</body>
+</html>
