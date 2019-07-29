@@ -4,11 +4,12 @@ from django.core.urlresolvers import reverse
 from django.shortcuts import render, redirect, HttpResponse
 import re
 from celery_tasks.tasks import send_register_active_email
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 # 安装itsdangerous库  pip3 install itsdangerous
 from django.views.generic import View
 from itsdangerous import TimedJSONWebSignatureSerializer as Serializer, SignatureExpired
 from user.models import User
+
 from utils.mixin import LoginRequiredMixin
 
 
@@ -221,6 +222,19 @@ class LoginView(View):
             # 用户名或密码错误
             return render(request, 'login.html', {'errmsg': '用户名或密码错误'})
         # 返回应答
+
+
+# /user/logout
+class LogoutView(View):
+    '''退出登录'''
+
+    def get(self, request):
+        '''退出登录'''
+        # 清除用户的session信息
+        logout(request)
+
+        # 跳转到首页
+        return redirect(reverse('goods:index'))  # 注:'goods:index'  : 两边一定不能有空格
 
 
 # /user
