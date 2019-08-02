@@ -27,8 +27,8 @@ SECRET_KEY = '_47(u!zn87)6bx6)ed5rcf&q_m2ju4wj_b@em(h1l)i8)c^=wn'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['192.168.3.193']
-
+# ALLOWED_HOSTS = ['192.168.3.199']
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -39,11 +39,11 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'tinymce', # 富文本编辑器
-    'user', # 19行有配置路径 用户模块
-    'cart', # 购物车模块
-    'goods', # 商品模块
-    'order', # 订单模块
+    'tinymce',  # 富文本编辑器
+    'user',  # 19行有配置路径 用户模块
+    'cart',  # 购物车模块
+    'goods',  # 商品模块
+    'order',  # 订单模块
     # 'apps.user',
     # 'apps.cart',
     # 'apps.goods',
@@ -81,7 +81,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'dailyfresh.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 
@@ -99,7 +98,6 @@ DATABASES = {
 # django认证系统使用的模型类,不加这句话迁移会报错
 AUTH_USER_MODEL = 'user.User'
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
 
@@ -113,7 +111,6 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
@@ -122,9 +119,9 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 # 富文本编辑器配置
 TINYMCE_DEFAULT_CONFIG = {
-    'theme' : 'advanced',
-    'width' : 600,
-    'heigh' : 400,
+    'theme': 'advanced',
+    'width': 600,
+    'heigh': 400,
 }
 
 # 发送邮件配置
@@ -132,11 +129,11 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 # smpt服务地址
 EMAIL_HOST = 'smtp.sina.cn'
 EMAIL_PORT = 25
-#发送邮件的邮箱
+# 发送邮件的邮箱
 EMAIL_HOST_USER = '13570914295@sina.cn'
-#在邮箱中设置的客户端授权密码
+# 在邮箱中设置的客户端授权密码
 EMAIL_HOST_PASSWORD = 'linyidan031'
-#收件人看到的发件人
+# 收件人看到的发件人
 EMAIL_FROM = '天天生鲜<13570914295@sina.cn>'
 
 # Django-redis 緩存配置
@@ -155,4 +152,13 @@ SESSION_CACHE_ALIAS = "default"
 
 # 配置登录url地址
 LOGIN_URL = '/user/login'
+
+# 配置Django的文件存储类
+DEFAULT_FILE_STORAGE = 'utils.fdfs.storage.FDFSStorage'
+
+# 设置fdfs使用的client.conf文件路径
+FDFS_CLIENT_CONE = ('./utils/fdfs/client.conf')
+
+# 设置fdfs存储服务器上nginx的IP和端口号
+FDFD_URL = 'http://192.168.3.201:8888/'
 
