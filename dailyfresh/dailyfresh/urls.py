@@ -18,9 +18,9 @@ from django.contrib import admin
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^tinymce/', include('tinymce.urls')), # 富文本编辑器
-    url(r'^user/', include('user.urls', namespace='user')), # setting中有配置了路径
-    url(r'^cart/', include('cart.urls', namespace='cart')), # namespace 为反向解析
+    url(r'^tinymce/', include('tinymce.urls')),  # 富文本编辑器
+    url(r'^user/', include('user.urls', namespace='user')),  # setting中有配置了路径
+    url(r'^cart/', include('cart.urls', namespace='cart')),  # namespace 为反向解析
     url(r'^order/', include('order.urls', namespace='order')),
-    url(r'^', include('goods.urls', namespace='goods')), # 商品模块也是主页
+    url(r'^', include('goods.urls', namespace='goods')),  # 商品模块也是主页
 ]
